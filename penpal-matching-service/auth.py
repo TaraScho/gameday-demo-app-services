@@ -31,7 +31,7 @@ def login_post():
         # Store the token in the session or cookies (e.g., Flask session or HttpOnly cookie)
         if token:
             response = make_response(redirect(url_for('main.match_penpal')))
-            response.set_cookie("access_token", token, httponly=True, secure=True)
+            response.set_cookie("access_token", token, domain="http://*.elb.amazonaws.com")
             return response
         else:
             return redirect(url_for('auth.login'))
